@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simple</title>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <form id="calculator-form">
+        <label for="num1">Número 1:</label>
+        <input type="number" id="num1" placeholder="Número 1" required>
+        
+        <label for="num2">Número 2:</label>
+        <input type="number" id="num2" placeholder="Número 2" required>
+
+        <button type="button" onclick="calculate('add')">Sumar</button>
+        <button type="button" onclick="calculate('subtract')">Restar</button>
+        <button type="button" onclick="calculate('multiply')">Multiplicar</button>
+        <button type="button" onclick="calculate('divide')">Dividir</button>
+
+        <div id="result">Resultado: </div>
+    </form>
+
+    <script>
+        function calculate(operation) {
+            // Obtener valores de los campos
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            let result;
+
+            // Validar los valores ingresados
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Por favor, ingresa dos números válidos.');
+                return;
+            }
+
+            // Realizar la operación deseada
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        alert('No se puede dividir por cero.');
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+            }
+
+            // Mostrar el resultado
+            document.getElementById('result').textContent = 'Resultado: ' + result;
+        }
+    </script>
+</body>
+</html>
